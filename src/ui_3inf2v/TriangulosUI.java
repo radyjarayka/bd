@@ -4,6 +4,8 @@
  */
 package ui_3inf2v;
 
+import java.awt.Color;
+
 /**
  *
  * @author 20221074010021
@@ -47,6 +49,11 @@ public class TriangulosUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Triângulos");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -166,7 +173,13 @@ public class TriangulosUI extends javax.swing.JFrame {
     public static boolean isTriangle(double a,double b, double c){
         return a < b + c && c < a + b;
     }
+    public static String typeTriangle(double a,double b, double c) {
+        
+    }
+    public static double areaTriangle (double a,double b, double c) {
     
+    }
+            
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
        double a = Double.parseDouble(jTextField1.getText());
        double b = Double.parseDouble(jTextField1.getText());
@@ -175,8 +188,25 @@ public class TriangulosUI extends javax.swing.JFrame {
        tipoLabel.setText("Tipo encontrado!");
        areaLabel.setText("Área encontrada!");
        
-       if (isTriangle) 
+       if (isTriangle(a,b,c)) {
+       tipoLabel.setText("Tipo ="+typeTriangle(a, b , c));
+       tipoLabel.setText("Área = %.4f", areaTriangle (a, b, c));
+       } else {
+       tipoLabel.setText("Não é um triângulo!");
+       tipoLabel.setForeground(Color.red);
+       tipoLabel.setText();
+       
+       }
     }//GEN-LAST:event_CalcActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+       jTextField1.setText ("");
+       jTextField2.setText ("");
+       jTextField3.setText ("");
+       tipoLabel.setText("Tipo = ?");
+       tipoLabel.setForeground(Color.balck);
+       areaLabel.setText(Área);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
