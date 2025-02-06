@@ -46,7 +46,7 @@ public class DesafioUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Desafio");
+        jLabel1.setText("Color Mixer");
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -108,7 +108,7 @@ public class DesafioUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-       jTextField1.setText(jSlider1.getValue()+"");
+        jTextField1.setText(jSlider1.getValue()+"");
     }//GEN-LAST:event_jSlider1StateChanged
 
     /**

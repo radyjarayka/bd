@@ -100,35 +100,37 @@ public class TriangulosUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 71, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Calc)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 71, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Calc)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tipoLabel)
+                            .addComponent(areaLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(areaLabel)
-                    .addComponent(tipoLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,38 +176,55 @@ public class TriangulosUI extends javax.swing.JFrame {
         return a < b + c && c < a + b;
     }
     public static String typeTriangle(double a,double b, double c) {
-        
+         if (a == b && b == c){
+            return "Equilátero";
+        } else if (a == b || a == c || b == c){
+            return "Isóceles";
+        } else{
+            return "Escaleno";
     }
     public static double areaTriangle (double a,double b, double c) {
-    
+        double sP = (a + b + c)/ 2;
+        return Math.sqrt(sP * (sP - a)* (sP - b)* (sP - c));
     }
             
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
-       double a = Double.parseDouble(jTextField1.getText());
-       double b = Double.parseDouble(jTextField1.getText());
-       double c = Double.parseDouble(jTextField1.getText());
+        JOptionPane.showMessageDialog(
+        null,
+        "Preencha todos os lados",
+        "ERRO",
+        JOptionPane.ERROR_MESSAGE  ); }
        
-       tipoLabel.setText("Tipo encontrado!");
-       areaLabel.setText("Área encontrada!");
+   {
+                
+        double a = Double.parseDouble(jTextField1.getText());
+        double b = Double.parseDouble(jTextField2.getText());
+        double c = Double.parseDouble(jTextField3.getText());
        
-       if (isTriangle(a,b,c)) {
-       tipoLabel.setText("Tipo ="+typeTriangle(a, b , c));
-       tipoLabel.setText("Área = %.4f", areaTriangle (a, b, c));
-       } else {
-       tipoLabel.setText("Não é um triângulo!");
-       tipoLabel.setForeground(Color.red);
-       tipoLabel.setText();
+         tipoLabel.setText("Tipo encontrado...");
+        areaLabel.setText("Area encontrado...");
        
+        if (isTriangle(a,b,c)){
+            tipoLabel.setText ("Tipo = " + typeTriangle(a,b,c));
+            areaLabel.setText(
+                String.format("Área = &.4f", areaTriangle(a,b,c))
+            );
+        } else {
+            tipoLabel.setText("Não é um triângulo");
+            tipoLabel.setForeground(Color.CYAN);
+            tipoLabel.setText("");
+        }
        }
     }//GEN-LAST:event_CalcActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-       jTextField1.setText ("");
-       jTextField2.setText ("");
-       jTextField3.setText ("");
-       tipoLabel.setText("Tipo = ?");
-       tipoLabel.setForeground(Color.balck);
-       areaLabel.setText(Área);
+        jTextField1.setText("");  
+        jTextField2.setText("");  
+        jTextField3.setText("");      
+        tipoLabel.setText("Tipo = ?");
+        tipoLabel.setForeground(Color.BLACK);
+        areaLabel.setText("Tipo = ?");
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
@@ -242,7 +261,6 @@ public class TriangulosUI extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Calc;
     private javax.swing.JLabel areaLabel;
@@ -258,4 +276,4 @@ public class TriangulosUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel tipoLabel;
     // End of variables declaration//GEN-END:variables
-}
+} 
